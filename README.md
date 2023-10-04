@@ -13,19 +13,18 @@ We use Arduino to debug issues related to the connection of hardware.
 ### System Requirement
 - hardware requirement: sensors that could be connected to the device
   - Components
-    
-    FSR406: A force-sensitive resistor that changes resistance based on applied force.
-    
-    Linear Voltage Conversion Modules: Converts the FSR's resistance to a proportional voltage.
-    Arduino: Reads the converted voltage and communicates the data to the PC.
-    PC: Used to process and possibly visualize the force data.
+    - FSR406: A force-sensitive resistor that changes resistance based on applied force.
+    - Linear Voltage Conversion Modules: Converts the FSR's resistance to a proportional voltage.
+    - Arduino: Reads the converted voltage and communicates the data to the PC.
+    - PC: Used to process and possibly visualize the force data.
+  
   - Setup
     1. Connecting the FSR406 to the Voltage Conversion Module:
       - Connect one end of the FSR to one of the input pins on the linear voltage converter module. Connect the other end of the FSR to a different pin.
-  
-          
+     
     2. Linking the Voltage Conversion Module to Arduino:
       - Connect the module's output (AO) to one of the Arduino's analog pins(A0-A3). Connect the power supply (VCC) and ground (GND) to the Arduino's 5V and GND pins via the breadboard.
+  
     3. Connecting Arduino to PC:
       - Using a USB 2.0 type B cable, connect the Arduino to one of the PC's USB ports. Install the required drivers using the Arduino's IDE.
       - Uploading the Arduino Code(optional):
