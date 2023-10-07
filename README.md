@@ -8,7 +8,7 @@ A virtual pet designer for group 15's research, the virtual pet will have differ
 3. Connect the hardware to the device, make sure the hardware is successfully connected to the device
 
 ##### Debug with unsuccessful connection of hardware
-We use Arduino to debug issues related to the connection of hardware.
+We use Arduino to debug issues related to the connection of hardware. Debug files are located in `HardwareCode` folder
 
 ### System Requirement
 - hardware requirement: sensors that could be connected to the device
