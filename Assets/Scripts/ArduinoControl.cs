@@ -4,13 +4,12 @@ using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 public class ArduinoControl : MonoBehaviour
 {
-    public int p1;
-    public int p2;
-    public int p3;
-    public int p4;
+
+    public List<int> touchValues;
     // Use this for initialization
     void Start()
     {
+        touchValues = new List<int>() { 0, 0, 0, 0 };
     }
     // Update is called once per frame
     void Update()
@@ -24,24 +23,28 @@ public class ArduinoControl : MonoBehaviour
         string[] data = msg.Split(':');
         int number = int.Parse(data[1].Trim());
         print(number + data[0]);
-        if(number != 0)
-        {
-            switch (data[0])
-            {
-                case "P1":
-                    p1 = number;
-                    break;
-                case "P2":
-                    p2 = number;
-                    break;
-                case "P3":
-                    p3 = number;
-                    break;
-                case "P4":
-                    p4 = number;
-                    break;
-            }
-        }
+
+        int index = int.Parse("" + data[0][1]) - 1;
+        touchValues[index] = number;
+
+        //if(number != 0)
+        //{
+        //    switch (data[0])
+        //    {
+        //        case "P1":
+        //            p1 = number;
+        //            break;
+        //        case "P2":
+        //            p2 = number;
+        //            break;
+        //        case "P3":
+        //            p3 = number;
+        //            break;
+        //        case "P4":
+        //            p4 = number;
+        //            break;
+        //    }
+        //}
       
     }
     // Invoked when a connect/disconnect event occurs. The parameter 'success'

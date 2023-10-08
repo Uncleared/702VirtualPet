@@ -1,17 +1,29 @@
 ﻿using System.Collections;
+using System.Diagnostics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 public class CatBehaviour : MonoBehaviour
 {
+    public GameObject heartParticles;
+    public TextMeshProUGUI scoreText;
+    public int score = 0;
+
+    public Image affectionMeter;
+    public float affection = 0f;
+    public float maxAffection = 10f;
 
     public enum CatState
     {
 
     }
+
     public Transform owner;
 
     bool wandering = true;
+    bool dead = false;
     public Animator animator;
     public float wanderRadius;
     public float wanderTimer;
@@ -40,12 +52,29 @@ public class CatBehaviour : MonoBehaviour
         return false;
     }
 
+    public void Death()
+    {
+        if(dead)
+        {
+            return;
+        }
+        IEnumerator DeathCoroutine()
+        {
+            score = (int)(score * 0.5f);
+            animator.SetTrigger("Death");
+            dead = true;
+
+            yield return new WaitForSeconds(3f);
+            dead = false;
+            animator.SetTrigger("Idle");
+
+        }
+        StartCoroutine(DeathCoroutine());
+    }
     public void GoToOwner()
     {
         wandering = false;
         agent.SetDestination(owner.position);
-   
-
     }
 
     public void Bounce()
@@ -61,15 +90,57 @@ public class CatBehaviour : MonoBehaviour
         }
         StartCoroutine(Anim());
     }
+
+    float lastTouch = 0f;
+
+    public void AddAffection(float rate)
+    {
+        if(dead)
+        {
+            return;
+        }
+        lastTouch = 2f;
+
+        affection += Time.deltaTime * rate;
+    }
+
     void Update()
     {
+        scoreText.text = "Score: " + score;
+        if(lastTouch > 0f)
+        {
+            lastTouch -= Time.deltaTime;
+        }
+        if(affection > 0f)
+        {
+            affection -= Time.deltaTime * (1f - lastTouch/2f);
+        }
+
+        if(lastTouch > 1.9f)
+        {
+            score += (int)(affection * 5f);
+            heartParticles.SetActive(true);
+        }
+        else
+        {
+            heartParticles.SetActive(false);
+            score -= 1;
+        }
+
+        if (affection > maxAffection)
+        {
+            Death();
+            affection = 0f;
+        }
+        affectionMeter.fillAmount = affection / maxAffection;
+
         Vector3 lookRotation = (transform.position - previousPosition).normalized;
         if(lookRotation.magnitude > 0.01f)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookRotation), Time.deltaTime * 2f);
         }
 
-        if (!wandering)
+        if (!wandering && !dead)
         {
             if(HasReachedDestination())
             {
@@ -80,7 +151,7 @@ public class CatBehaviour : MonoBehaviour
         float movementSpeed = (transform.position - previousPosition).magnitude * 100f;
         animator.SetFloat("MovementSpeed", movementSpeed);
 
-        if(wandering)
+        if(wandering && !dead)
         {
             timer += Time.deltaTime;
 
