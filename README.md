@@ -1,21 +1,21 @@
-# 702VirtualPet - Group 15
+# SE702/CS705 Advanced HCI: Virtual Pet - Group 15
 
-A virtual pet designer for group 15's research, the virtual pet will have different reactions according to the user's action to the sensor
+A virtual pet interaction program for group 15's research, where the virtual pet in Unity will have different reactions according to the user's actions to the pressure sensors connected to the Arduino board
 
 ### Installation
 1. Copy the repository to the local environment
 2. run the project with Unity v2019.4.37f1
-3. Connect the hardware to the device, make sure the hardware is successfully connected to the device
+3. Connect the hardware to the device
 
 ##### Debug with unsuccessful connection of hardware
 We use Arduino to debug issues related to the connection of hardware. Debug files are located in `HardwareCode` folder
 
 ### System Requirement
-- hardware requirement: sensors that could be connected to the device
+- Hardware requirement: sensors that could be connected to the device
   - Components
     - FSR406: A force-sensitive resistor that changes resistance based on applied force.
     - Linear Voltage Conversion Modules: Converts the FSR's resistance to a proportional voltage.
-    - Arduino: Reads the converted voltage and communicates the data to the PC.
+    - Arduino Uno: Reads the converted voltage and communicates the data to the PC.
     - PC: Used to process and possibly visualize the force data.
   
   - Setup
@@ -29,16 +29,15 @@ We use Arduino to debug issues related to the connection of hardware. Debug file
       - Using a USB 2.0 type B cable, connect the Arduino to one of the PC's USB ports. Install the required drivers using the Arduino's IDE.
       - Uploading the Arduino Code(optional):
         - Open the Arduino IDE on your PC.
-        - Write or paste the code to read the analog value from pin A0.
-        - Use the Serial.println() function to send this data to the PC.
+        - Write or paste the code in `HardwareCode` folder to read the analog value from pin A0.
         - Upload the code to the Arduino.
       - Reading Data on the PC:
         - Open the Serial Monitor in the Arduino IDE. You should see force data being printed from the FSR in real-time.
 
-- software requirement: The system should be able to run Unity v2019.4.37f1
+- Software requirement: The system should be able to run Unity v2019.4.37f1
 
 ### Functionality
-- virtual pet will walk towards the user and roll when a user touches the sensor connected to the device
+- Virtual pet will walk towards the user and roll when a user touches the sensor connected to the device
 
 ### Contributors
 - Zixuan Wen (zwen655)
