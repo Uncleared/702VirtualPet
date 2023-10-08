@@ -24,13 +24,13 @@ Material:
     - _BladeCurve: 2
     - _BladeForward: 0.38
     - _GrassHeight: 1
-    - _GrassWidth: 0.06
+    - _GrassWidth: 0.09
     - _MaxDist: 60
     - _MinDist: 40
     - _Rad: 0.6
-    - _Radius: 0.3
+    - _Radius: 0.79
     - _RandomHeight: 0.25
-    - _Strength: 5
+    - _Strength: 5.94
     - _WindSpeed: 100
     - _WindStrength: 0.05
     m_Colors:
