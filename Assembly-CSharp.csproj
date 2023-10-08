@@ -67,13 +67,16 @@
     <Compile Include="Assets\Ardity\Scripts\Threads\SerialThread.cs" />
     <Compile Include="Assets\Ardity\Scripts\Threads\SerialThreadCustomDelimiter.cs" />
     <Compile Include="Assets\Ardity\Scripts\Threads\SerialThreadLines.cs" />
-    <Compile Include="Assets\ArduinoControl.cs" />
-    <Compile Include="Assets\CatBehaviour.cs" />
-    <Compile Include="Assets\CatControls.cs" />
     <Compile Include="Assets\Quirky Series Ultimate\_Scripts\Demo.cs" />
+    <Compile Include="Assets\Scripts\ArduinoControl.cs" />
+    <Compile Include="Assets\Scripts\Cat\CatBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Cat\CatControls.cs" />
+    <Compile Include="Assets\Scripts\Grass\GeometryGrassPainter.cs" />
+    <Compile Include="Assets\Scripts\Grass\GrassPainterEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Quirky Series Ultimate\_Shader\SoftSurface.shader" />
+    <None Include="Assets\Shaders\GrassGeometry.shader" />
     <None Include="Assets\Quirky Series Ultimate\_Shader\ToonRamp.shader" />
   </ItemGroup>
   <ItemGroup>
