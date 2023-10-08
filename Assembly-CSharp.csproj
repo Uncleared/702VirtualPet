@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Cat\CatControls.cs" />
     <Compile Include="Assets\Scripts\Grass\GeometryGrassPainter.cs" />
     <Compile Include="Assets\Scripts\Grass\GrassPainterEditor.cs" />
+    <Compile Include="Assets\Scripts\Grass\ShaderInteractor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Quirky Series Ultimate\_Shader\SoftSurface.shader" />
