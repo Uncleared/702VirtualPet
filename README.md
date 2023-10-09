@@ -56,6 +56,9 @@ We use Arduino to debug issues related to the connection of hardware. Debug file
 - There is a 60 seconds timer, and the game will end once the timer is up. Score is calculated based on how many times the player has successfully kept the pet's affection at around 80%.
 - When the affection is more than 100%, the pet will explode with the excessive afffection and "die", so make sure don't give more affection than what the pet can take!
 
+#### Libraries Used
+- [Ardity](https://assetstore.unity.com/packages/tools/integration/ardity-arduino-unity-communication-made-easy-123819)
+
 ### Demo
 [![Demo Video](http://img.youtube.com/vi/sWDHwbbPdQM/0.jpg)](http://www.youtube.com/watch?v=sWDHwbbPdQM)
 - Executable file: `702VirtualPet.exe`
