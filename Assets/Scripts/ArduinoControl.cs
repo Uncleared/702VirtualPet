@@ -26,25 +26,6 @@ public class ArduinoControl : MonoBehaviour
 
         int index = int.Parse("" + data[0][1]) - 1;
         touchValues[index] = number;
-
-        //if(number != 0)
-        //{
-        //    switch (data[0])
-        //    {
-        //        case "P1":
-        //            p1 = number;
-        //            break;
-        //        case "P2":
-        //            p2 = number;
-        //            break;
-        //        case "P3":
-        //            p3 = number;
-        //            break;
-        //        case "P4":
-        //            p4 = number;
-        //            break;
-        //    }
-        //}
       
     }
     // Invoked when a connect/disconnect event occurs. The parameter 'success'

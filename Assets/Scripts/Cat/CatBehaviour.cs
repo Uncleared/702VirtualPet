@@ -15,6 +15,9 @@ public class CatBehaviour : MonoBehaviour
     public float affection = 0f;
     public float maxAffection = 10f;
 
+    public AudioSource audioSource;
+    public AudioClip pain;
+
     public enum CatState
     {
 
@@ -28,7 +31,6 @@ public class CatBehaviour : MonoBehaviour
     public float wanderRadius;
     public float wanderTimer;
 
-    private Transform target;
     private NavMeshAgent agent;
     private float timer;
 
@@ -130,6 +132,7 @@ public class CatBehaviour : MonoBehaviour
         if (affection > maxAffection)
         {
             Death();
+            audioSource.PlayOneShot(pain);
             affection = 0f;
         }
         affectionMeter.fillAmount = affection / maxAffection;

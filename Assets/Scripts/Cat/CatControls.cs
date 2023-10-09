@@ -23,7 +23,7 @@ public class CatControls : MonoBehaviour
             {
                 if (arduino.touchValues[i] - 30f > 0f)
                 {
-                    catBehaviour.AddAffection((arduino.touchValues[i] - 30f) / 90f);
+                    catBehaviour.AddAffection((arduino.touchValues[i] - 30f) / 120f);
 
                 }
             }
