@@ -41,6 +41,7 @@ A virtual pet interaction program for group 15's research, where the user intera
    ![image](https://github.com/Uncleared/702VirtualPet/assets/79774614/c73ad8c0-c5ea-4897-80a3-7824dba8c5c6)
 5. Open up the project in Unity v2019.4.37f1, located in the `Unity` folder
 6. In the SerialController GameObject, change the Port Name in the Inspector to whichever port name your Arduino board is connected to
+   
    ![image](https://github.com/Uncleared/702VirtualPet/assets/79774614/9095808c-50da-44cb-b850-e12ebcb5844b)
 
 7. Press Play
@@ -56,7 +57,9 @@ We use Arduino to debug issues related to the connection of hardware. Debug file
 - When the affection is more than 100%, the pet will explode with the excessive afffection and "die", so make sure don't give more affection than what the pet can take!
 
 ### Demo
-[![Demo Video](http://img.youtube.com/vi/sWDHwbbPdQM/0.jpg)](http://www.youtube.com/watch?v=sWDHwbbPdQM)
+- [![Demo Video](http://img.youtube.com/vi/sWDHwbbPdQM/0.jpg)](http://www.youtube.com/watch?v=sWDHwbbPdQM)
+- Executable file: `702VirtualPet.exe`
+- Plan for conducting user studies: `UserStudyPlan.pdf`
 
 ### Contributors
 - Guoying Jiang (gjia514)
