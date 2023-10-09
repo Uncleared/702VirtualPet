@@ -57,7 +57,7 @@ We use Arduino to debug issues related to the connection of hardware. Debug file
 - When the affection is more than 100%, the pet will explode with the excessive afffection and "die", so make sure don't give more affection than what the pet can take!
 
 ### Demo
-- [![Demo Video](http://img.youtube.com/vi/sWDHwbbPdQM/0.jpg)](http://www.youtube.com/watch?v=sWDHwbbPdQM)
+[![Demo Video](http://img.youtube.com/vi/sWDHwbbPdQM/0.jpg)](http://www.youtube.com/watch?v=sWDHwbbPdQM)
 - Executable file: `702VirtualPet.exe`
 - Plan for conducting user studies: `UserStudyPlan.pdf`
 
