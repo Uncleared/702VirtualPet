@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class CatBehaviour : MonoBehaviour
 {
@@ -16,7 +17,13 @@ public class CatBehaviour : MonoBehaviour
     public float maxAffection = 10f;
 
     public AudioSource audioSource;
+    public AudioSource purAudioSource;
     public AudioClip pain;
+    public AudioClip love;
+    public AudioClip wow;
+
+    public float gameTimer = 60f;
+    bool playing = true;
 
     public enum CatState
     {
@@ -42,6 +49,7 @@ public class CatBehaviour : MonoBehaviour
         timer = wanderTimer;
     }
 
+    public TextMeshProUGUI timerText;
     private bool HasReachedDestination()
     {
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
@@ -62,12 +70,14 @@ public class CatBehaviour : MonoBehaviour
         }
         IEnumerator DeathCoroutine()
         {
+            agent.isStopped = true;
             score = (int)(score * 0.5f);
             animator.SetTrigger("Death");
             dead = true;
 
             yield return new WaitForSeconds(3f);
             dead = false;
+            agent.isStopped = false;
             animator.SetTrigger("Idle");
 
         }
@@ -101,13 +111,44 @@ public class CatBehaviour : MonoBehaviour
         {
             return;
         }
+
+        if(lastTouch < 1.5f)
+        {
+            audioSource.PlayOneShot(love);
+        }
         lastTouch = 2f;
 
         affection += Time.deltaTime * rate;
     }
 
+    float scoreCooldown = 0f;
+    public void Restart()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public GameObject gameOverPanel;
     void Update()
     {
+        if(!playing)
+        {
+            return;
+        }
+        if(scoreCooldown > 0f)
+        {
+            scoreCooldown -= Time.deltaTime;
+        }
+        gameTimer -= Time.deltaTime;
+
+        timerText.text = "Timer: " + gameTimer.ToString("F2");
+        if(gameTimer <= 0)
+        {
+            playing = false;
+            gameOverPanel.SetActive(true);
+        }
+        if (wandering && affection > 8.5f)
+        {
+            GoToOwner();
+        }
         scoreText.text = "Score: " + score;
         if(lastTouch > 0f)
         {
@@ -120,13 +161,13 @@ public class CatBehaviour : MonoBehaviour
 
         if(lastTouch > 1.9f)
         {
-            score += (int)(affection * 5f);
+            purAudioSource.volume = 1f;
             heartParticles.SetActive(true);
         }
         else
         {
+            purAudioSource.volume =0f;
             heartParticles.SetActive(false);
-            score -= 1;
         }
 
         if (affection > maxAffection)
@@ -145,10 +186,20 @@ public class CatBehaviour : MonoBehaviour
 
         if (!wandering && !dead)
         {
-            if(HasReachedDestination())
+            if(HasReachedDestination() && scoreCooldown <= 0f)
             {
+                GameObject heartParticlesGO = Instantiate(heartParticles);
+                heartParticlesGO.transform.position = transform.position;
+                heartParticlesGO.transform.localScale = Vector3.one;
+                heartParticlesGO.SetActive(true);
+                Destroy(heartParticlesGO, 2f);
+                audioSource.PlayOneShot(wow);
+
+                scoreCooldown = 3f;
                 animator.SetTrigger("Roll");
+                score++;
                 wandering = true;
+                affection = 0f;
             }
         }
         float movementSpeed = (transform.position - previousPosition).magnitude * 100f;
